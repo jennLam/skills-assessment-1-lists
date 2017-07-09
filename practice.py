@@ -81,7 +81,9 @@ def smallest_int(numbers):
     if numbers == []:
         return
     else:
-        min = numbers[0]
+        min = numbers[0] #sets the first number to be the minimum
+        #loops through list, if following numbers are less than min
+        #that number will be set to min
         for num in numbers:
             if num < min:
                 min = num
@@ -111,7 +113,9 @@ def largest_int(numbers):
     if numbers == []:
         return
     else:
-        max = numbers[0]
+        max = numbers[0] #sets the first number to be the maximum
+        #loops through list, if following numbers are greater than max
+        #that number will be set to max
         for num in numbers:
             if num > max:
                 max = num
@@ -135,6 +139,8 @@ def halvesies(numbers):
     """
     half_numbers = []
 
+    #loops through numbers list and appends each value divided by 2 to
+    #empty list, half_numbers
     for num in numbers:
         half_numbers.append(float(num/2.0))
 
@@ -151,6 +157,8 @@ def word_lengths(words):
     """
 
     len_of_words = []
+
+    #appends length of each word in list to empty list, len_of_words
 
     for word in words:
         len_of_words.append(len(word))
@@ -174,6 +182,8 @@ def sum_numbers(numbers):
         >>> sum_numbers([])
         0
     """
+
+    #sets total to 0 and adds each number in list to total
     total = 0
 
     for num in numbers:
@@ -202,6 +212,7 @@ def mult_numbers(numbers):
         1
     """
 
+    #sets total to 1 and multiply each number in list to total
     total = 1
 
     for num in numbers:
@@ -227,6 +238,7 @@ def join_strings(words):
         ''
     """
 
+    #create empty string called joined_word and add all words in list to string
     joined_word = ""
 
     for word in words:
@@ -257,9 +269,11 @@ def average(numbers):
 
     total = 0.0
 
+    #set total to 0.0 and add all numbers in list to total
     for num in numbers:
         total += float(num)
 
+    #divide total by length of numbers to get the average
     return total/len(numbers)
 
 
@@ -280,11 +294,17 @@ def join_strings_with_comma(words):
         'Pretzel'
     """
 
+    #create empty string
     joined_word = ""
 
+    #loop through each word in the list, words
     for word in words:
+        #if the word is the last item in the list, words
+        #add the word to the string, joined_word
         if word is words[-1]:
             joined_word += word
+        #if the word is NOT the last item in list, words
+        #add the word and a comma to the string, joined_word
         else:
             joined_word += word + ", "
 
@@ -339,16 +359,37 @@ def reverse_list_in_place(items):
         >>> orig
         ['I', 'love', 'cookies']
     """
-    counter = 0
-    half_len_of_items = len(items)/2
+    #create a counter to count values from the start of the list
+    #and figure out the middle of the list
 
-    while counter < half_len_of_items:
-        counter2 = counter - 1
-        word_holder = items[counter]
-        items[counter] = items[counter2]
-        items[counter2] = word_holder
-        counter += 1
+    count_from_start = 0
+    middle = len(items)/2
 
+    #loop through the list till you reach the middle
+
+    while count_from_start < middle:
+
+        #create a second counter that counts from the end of the list
+
+        count_from_end = count_from_start - 1
+
+        #create a temporary string holder called word_holder
+        #and set it to the current string
+
+        word_holder = items[count_from_start]
+
+        #switch first and last items in the list
+        #you will continue switching the front and back items in the list
+        #till you reach the middle
+
+        items[count_from_start] = items[count_from_end]
+        items[count_from_end] = word_holder
+
+        #increment the counter from the start to continue down the list
+
+        count_from_start += 1
+
+    #return none
     return
 
 
@@ -378,14 +419,30 @@ def duplicates(items):
         ['apple', 'apple', 'berry']
     """
 
-    new_set = set(items)
+    #create a set that converts the list items into a set to remove duplicates
+    #create an empty list called duplicate_items
+
+    items_set = set(items)
     duplicate_items = []
 
-    for item_in_set in new_set:
+    #loop through the values in items_set
+
+    for item_in_set in items_set:
         counter = 0
+
+        #loop through the values in the list, items
+
         for item in items:
+
+            #compare the value in items_set and the value in the list, item
+            #if they're equal, increment the counter
+
             if item_in_set == item:
                 counter += 1
+
+        #if the counter is greater or equal to 2, it is a duplicate number
+        #append number to the duplicate_items list
+
         if counter >= 2:
             duplicate_items.append(item_in_set)
 
@@ -419,17 +476,32 @@ def find_letter_indices(words, letter):
     `None`.)
     """
 
+    #create empty list, index_list to store the word's index
+
     index_list = []
 
+    #loop through each word in the list, words
+
     for word in words:
+
+        #if the letter is not in the word, append None
         if letter not in word:
             index_list.append(None)
+
+        #if the letter is in word, set a counter = 0
         else:
             counter = 0
+
+            #loop through each letter in word and compare them will 'letter'
             for each_letter in word:
+
+                #if the letter is equal, append the counter number (which
+                #is equal to the index number) to index_list
+                #and break out of loop
                 if letter == each_letter:
                     index_list.append(counter)
                     break
+                #otherwise increment counter and compare with next letter
                 else:
                     counter += 1
 
